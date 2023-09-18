@@ -13,7 +13,7 @@ public:
         neliot = b;
         cout << "Asunto maaritetty. Asukkaita: " << asukasMaara << ". Nelioita: " << neliot << endl;
     }
-    double laskeKulutus(double hinta){
+    virtual double laskeKulutus(double hinta){
         double kulutus = asukasMaara * neliot * hinta;
         return kulutus;
     }
@@ -32,7 +32,7 @@ public:
     virtual void maaritaAsunnot(){
         maarita(2, 100);
     }
-    double laskeKulutus(double hinta){
+    virtual double laskeKulutus(double hinta){
 
     }
     Kerros(){
@@ -40,7 +40,7 @@ public:
     }
 };
 
-class Katutaso : public Kerros, virtual public Asunto{
+class Katutaso : virtual public Kerros, virtual public Asunto{
 public:
     Asunto as1;
     Asunto as2;
@@ -50,7 +50,7 @@ public:
     void maaritaAsunnot(){
         maarita(2, 100);
     }
-    double laskeKulutus(double hinta){
+    virtual double laskeKulutus(double hinta){
 
     }
     Katutaso(){
@@ -58,7 +58,7 @@ public:
     }
 };
 
-class Kerrostalo : public Kerros, public Katutaso{
+class Kerrostalo : virtual public Kerros, public Katutaso{
 private:
     Katutaso eka;
     Kerros toka;
@@ -70,16 +70,7 @@ public:
 };
 
 int main(){
-    Katutaso KT;
-    cout << "Maaritetaan 2 kpl katutason asuntoja" << endl;
-    KT.maaritaAsunnot();
-    KT.maaritaAsunnot();
-    cout << "Maaritetaan katutason kerrokselta perittyja asuntoja" << endl;
-    cout << "Maaritetaan 4 kpl kerroksen asuntoja" << endl;
-    KT.maaritaAsunnot();
-    KT.maaritaAsunnot();
-    KT.maaritaAsunnot();
-    KT.maaritaAsunnot();
-    cout << "Katutason ja perityn kerroksen kulutus, kun hinta = 1, on 1200" << endl;
+    Asunto * asunto = new Kerrostalo;
+    asunto->laskeKulutus(1);
     return 0;
 }
