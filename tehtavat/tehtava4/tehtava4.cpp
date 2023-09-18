@@ -30,10 +30,15 @@ public:
     Asunto as4;
 
     virtual void maaritaAsunnot(){
+        cout << "Maaritetaan 4 kpl kerroksen asuntoja" << endl;
+        maarita(2, 100);
+        maarita(2, 100);
+        maarita(2, 100);
         maarita(2, 100);
     }
     virtual double laskeKulutus(double hinta){
-
+        double kulutus = asukasMaara * neliot * hinta;
+        return kulutus;
     }
     Kerros(){
         cout << "Kerros luotu" << endl;
@@ -44,14 +49,15 @@ class Katutaso : virtual public Kerros, virtual public Asunto{
 public:
     Asunto as1;
     Asunto as2;
-
-    using Asunto::maarita;
     
     void maaritaAsunnot(){
+        cout << "Maaritetaan 2 kpl katutason asuntoja" << endl;
+        maarita(2, 100);
         maarita(2, 100);
     }
     virtual double laskeKulutus(double hinta){
-
+        double kulutus = asukasMaara * neliot * hinta;
+        return kulutus;
     }
     Katutaso(){
         cout << "Katutaso luotu" << endl;
@@ -65,12 +71,17 @@ private:
     Kerros kolmas;
 public:
     double laskeKulutus(double hinta){
-        
+        double kulutus = asukasMaara * neliot * hinta;
+        return kulutus;
+    }
+    Kerrostalo(){
+        cout << "Kerrostalo luotu" << endl;
     }
 };
 
 int main(){
     Asunto * asunto = new Kerrostalo;
+    asunto->maarita(2, 100);
     asunto->laskeKulutus(1);
     return 0;
 }
