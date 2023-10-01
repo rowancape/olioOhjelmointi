@@ -4,8 +4,8 @@ using namespace std;
 #include "kerrostalo.h"
 
 int main(){
-    Kerrostalo talo;
-    cout<<"Kerrostalon kulutus, = "<<talo.laskeKulutus(1)<<endl;
+    Kerrostalo * talo = new Kerrostalo;
+    cout<<"Kerrostalon kulutus, = "<<talo->laskeKulutus(1)<<endl;
 
     return 0;
 }
